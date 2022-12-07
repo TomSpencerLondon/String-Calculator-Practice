@@ -33,4 +33,10 @@ public class StringCalculatorTest {
     assertThat(StringCalculator.sum("1,2,3"))
         .isEqualTo(6);
   }
+
+  @Test
+  void sumsNumbersDelimitedByNewLine() {
+    assertThat(StringCalculator.sum("1\n2"))
+        .isEqualTo(3);
+  }
 }
