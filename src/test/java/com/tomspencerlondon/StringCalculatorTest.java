@@ -19,4 +19,12 @@ public class StringCalculatorTest {
     assertThat(StringCalculator.sum("42"))
         .isEqualTo(42);
   }
+
+  @Test
+  void sumsTwoNumbersSeparatedByComma() {
+    assertThat(StringCalculator.sum("1,2"))
+        .isEqualTo(3);
+    assertThat(StringCalculator.sum("1,3"))
+        .isEqualTo(4);
+  }
 }
