@@ -39,4 +39,16 @@ public class StringCalculatorTest {
     assertThat(StringCalculator.sum("1\n2"))
         .isEqualTo(3);
   }
+
+  @Test
+  void sumNumbersDelimitedByCommaOrNewline() {
+    assertThat(StringCalculator.sum("1,2\n3"))
+        .isEqualTo(6);
+  }
+
+  @Test
+  void usesDelimiterSpecified() {
+    assertThat(StringCalculator.sum("//;\n1;2"))
+        .isEqualTo(3);
+  }
 }
