@@ -27,4 +27,10 @@ public class StringCalculatorTest {
     assertThat(StringCalculator.sum("1,3"))
         .isEqualTo(4);
   }
+
+  @Test
+  void sumThreeNumbersSeparatedByComma() {
+    assertThat(StringCalculator.sum("1,2,3"))
+        .isEqualTo(6);
+  }
 }
