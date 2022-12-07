@@ -17,13 +17,16 @@ public class StringCalculator {
       return 0;
     }
 
-    StringCalculator calculator = createCalculatorFor(input);
-    return Arrays.stream(calculator.numbers.split(calculator.delimiter))
-        .mapToInt(Integer::parseInt)
-        .sum();
+    StringCalculator calculator = parseInput(input);
+    return calculator.sum();
   }
 
-  private static StringCalculator createCalculatorFor(String input) {
+  private int sum() {
+    return Arrays.stream(numbers.split(delimiter))
+        .mapToInt(Integer::parseInt).sum();
+  }
+
+  private static StringCalculator parseInput(String input) {
     if (input.startsWith("//")) {
       String[] parts = input.split("\n", 2);
       return new StringCalculator(parts[0].substring(2), parts[1]);
