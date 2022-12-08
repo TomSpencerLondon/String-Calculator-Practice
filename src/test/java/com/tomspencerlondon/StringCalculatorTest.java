@@ -65,6 +65,11 @@ public class StringCalculatorTest {
     assertThatThrownBy(() -> StringCalculator.sum("-3,-5,-13"))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("Number is negative: -3, -5, -13");
+  }
 
+  @Test
+  void numbersBiggerThanOneThousandToLastThreeDigits() {
+    assertThat(StringCalculator.sum("1002"))
+        .isEqualTo(2);
   }
 }

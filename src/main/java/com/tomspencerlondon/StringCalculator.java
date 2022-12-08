@@ -38,7 +38,8 @@ public class StringCalculator {
     if (numbers.isEmpty()) {
       return IntStream.empty();
     }
-    return Arrays.stream(numbers.split(delimiter)).mapToInt(Integer::parseInt);
+    return Arrays.stream(numbers.split(delimiter)).mapToInt(Integer::parseInt)
+        .map(n -> n % 1000);
   }
 
   private static StringCalculator parseInput(String input) {
