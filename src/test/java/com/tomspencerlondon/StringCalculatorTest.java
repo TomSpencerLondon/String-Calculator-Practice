@@ -1,6 +1,7 @@
 package com.tomspencerlondon;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 
@@ -50,5 +51,12 @@ public class StringCalculatorTest {
   void usesDelimiterSpecified() {
     assertThat(StringCalculator.sum("//;\n1;2"))
         .isEqualTo(3);
+  }
+
+  @Test
+  void throwsOnNegativeNumber() {
+    assertThatThrownBy(() -> StringCalculator.sum("-3"))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("Number is negative: -3");
   }
 }

@@ -1,6 +1,7 @@
 package com.tomspencerlondon;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class StringCalculator {
 
@@ -22,8 +23,15 @@ public class StringCalculator {
   }
 
   private int sum() {
-    return Arrays.stream(numbers.split(delimiter))
-        .mapToInt(Integer::parseInt).sum();
+    if (getNumber().anyMatch(n -> n < 0)) {
+      throw new IllegalArgumentException("Number is negative: " + getNumber().sum());
+    }
+    return getNumber()
+        .sum();
+  }
+
+  private IntStream getNumber() {
+    return Arrays.stream(numbers.split(delimiter)).mapToInt(Integer::parseInt);
   }
 
   private static StringCalculator parseInput(String input) {
