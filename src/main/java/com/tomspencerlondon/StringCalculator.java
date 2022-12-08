@@ -23,11 +23,11 @@ public class StringCalculator {
   }
 
   private int sum() {
-    if (getNumber().anyMatch(n -> n < 0)) {
-      throw new IllegalArgumentException("Number is negative: " + getNumber().sum());
+    int sum = getNumber().sum();
+    if (sum < 0) {
+      throw new IllegalArgumentException("Number is negative: " + sum);
     }
-    return getNumber()
-        .sum();
+    return sum;
   }
 
   private IntStream getNumber() {
