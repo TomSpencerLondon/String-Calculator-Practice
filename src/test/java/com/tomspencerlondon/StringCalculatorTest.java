@@ -59,4 +59,12 @@ public class StringCalculatorTest {
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("Number is negative: -3");
   }
+
+  @Test
+  void throwsOnNegativeNumbersWithAllNumbersInExceptionMessage() {
+    assertThatThrownBy(() -> StringCalculator.sum("-3,-5,-13"))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("Number is negative: -3, -5, -13");
+
+  }
 }

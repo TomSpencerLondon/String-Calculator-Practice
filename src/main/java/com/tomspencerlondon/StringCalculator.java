@@ -1,6 +1,7 @@
 package com.tomspencerlondon;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class StringCalculator {
@@ -14,23 +15,29 @@ public class StringCalculator {
   }
 
   public static int sum(String input) {
-    if (input.isEmpty()) {
-      return 0;
-    }
-
     StringCalculator calculator = parseInput(input);
     return calculator.sum();
   }
 
   private int sum() {
-    int sum = getNumber().sum();
-    if (sum < 0) {
-      throw new IllegalArgumentException("Number is negative: " + sum);
+    checkForNegativeNumbers();
+    return getNumber().sum();
+  }
+
+  private void checkForNegativeNumbers() {
+    String negativeNumbers = getNumber().filter(n -> n < 0)
+        .mapToObj(Integer::toString)
+        .collect(Collectors.joining(", "));
+
+    if (!negativeNumbers.isEmpty()) {
+      throw new IllegalArgumentException("Number is negative: " + negativeNumbers);
     }
-    return sum;
   }
 
   private IntStream getNumber() {
+    if (numbers.isEmpty()) {
+      return IntStream.empty();
+    }
     return Arrays.stream(numbers.split(delimiter)).mapToInt(Integer::parseInt);
   }
 
